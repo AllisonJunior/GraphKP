@@ -1,168 +1,280 @@
-# Krukal e Prim
+<h1 align="center"> ALLEN.H VERSÃO 1.0 ( Deprecated ) </h1>
+ 
+<br>
+
+<p>
+
+<img align="right" src="https://user-images.githubusercontent.com/114815898/232342528-026e718d-f4ce-4e2b-9ec1-508b3484546a.png" width="297" height="293" title="allen-san">
+
+### 1. A biblioteca `allen.h` tem como objetivo, a simplificação dinâmica de códigos em c, facilitando certos processos.
+### 2. Sua criação se deu como forma de estudo e adquirimento de experiência com projetos de larga escala, ou seja, foi produzida por uma só pessoa. 
+### 3. Essa biblioteca é de código aberto, ou seja, qualquer um pode usar ou melhorar-lá.
+### 4. Me absento de qualquer coisa ruim feita usando essa biblioteca.
+### 5. O compilador usado na biblioteca é o <a href="https://jmeubank.github.io/tdm-gcc/download/" title="Link para Download do Compilador"> TDM-GCC </a>, o instale para evitar erros.
+### 6. Recomendo o uso de CRTL + F para navegar pelas páginas.
+### 7. Para baixar a biblioteca utilize a <a href="https://github.com/AllisonJunior/allen.h/releases/tag/Release" title="Link para Download do Header" > release </a> disponibilizada.
+
+</p>
+
+<br>
 
 ---
 
-### 1 - PROJETO ESCOLHIDO: **`Restaurante Universitário`**
+<br>
 
-> O projeto utilizado para a aplicação do padrão de projeto foi o segundo, 
-> o qual se refere a criação de um sistema de restaurante, que simulava uma 
-> sessão de cardápios, com base no conceito do Restaurante Universitário da
-> faculdade.
+<h3 align="center"> CABEÇALHOS PADRÃO </h3> 
+<br>
+<br>
+
+```c
+# include <stdio.h>
+# include <stdlib.h>
+# include <math.h>
+# include <errno.h>
+# include <setjmp.h>
+# include <assert.h>
+# include <signal.h>
+# include <locale.h>
+# include <string.h>
+# include <windows.h>
+# include <stdarg.h>
+# include <commctrl.h>
+# include <iso646.h>
+# include <ctype.h>
+# include <stdbool.h>
+# include <conio.h>
+# include <time.h>
+# include <dirent.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <pthread.h>
+# include <limits.h>
+```
+
+<br> <br>
 
 ---
 
-### 2 - PADRÃO DE PROJETO UTILIZADO: **`Abstract Factory`**
+<br>
 
-### 2.1 - O que é:
-> O padrão de projeto **Abstract Factory**, também conhecido como **Factory of 
-> Factories ou Kit**, é um padrão de projeto de criação que fornece uma 
-> interface para criar famílias de objetos relacionados ou dependentes 
-> sem especificar suas **classes concretas**. Ele faz parte do grupo de 
-> padrões de projeto criacionais e é amplamente utilizado na engenharia 
-> de software para criar sistemas que são independentes da maneira como 
-> seus objetos são criados, compostos e representados.
+<h3 align="center"> OBSERVAÇÕES E AVISOS </h3> 
 
-### 2.2 - Propriedades:
-> **Basicamente esse padrão possui múltiplas propriedades e características, como:** <br>
-> 1. *Abstração de criação;*
-> 2. *Separação de responsabilidades;*
-> 3. *Flexibilidade;*
-> 4. *Extensabilidade;*
-> 5. *Garantia de consitência;*
-> 6. *Encapsulamento;*
-> 7. *Manutenção simplificada;*
-> 8. *Reusabilidade;*
-> 9. *Segurança de tipos;*
-> 10. *Polimorfismo.*
+<br>
+<br>
 
-### 2.3 - Componentes:
-> **Já em relação aos seus componentes temos os seguintes:**
+- A biblioteca possui suporte ao uso de `threads`, portanto é uma boa, pesquisar sobre;
+- Qual é a diferença entre `float` e `double`? float é de formato 32 bits e double de 64 bits, ou seja, double possui um melhor arredondamento;
+- A biblioteca foi produzida durante o segundo semestre de ciências da computação, e levou em torno de 3 semanas para ser concluida, fora a documentação;
+- A biblioteca não está passível de bugs, caso ocorra reporte na aba issues, e leve em consideração que foi feita por uma só pessoa;
+- Em relação a possíveis dúvidas que as documentações desse artigo tragam ou não solucionem, o `chat-gpt` tem capacidade de explicar : );
+- A biblioteca é de `código aberto`, ou seja, não possui direitos autorais ( como se alguém fosse licenciar uma simples biblioteca ) e qualquer um pode usar ou melhorar;
+- Inicialmente a biblioteca, nas atuais funções `SB` teriam outro nome -> `W`, onde basicamente serviriam para projetar seu próprio programa com interface gráfica, só não foram adicionadas pois perdi o interesse por causa do tempo;
+- A biblioteca só funciona no `Windows`, o uso recomendável é no Code::Blocks.
 
-> **1. Abstract Factory:** É uma interface ou classe abstrata que define 
-> os métodos para criar objetos de diferentes famílias. Geralmente, há um 
-> método abstrato para cada tipo de objeto que a fábrica pode criar. Por 
-> exemplo, se a fábrica estiver criando elementos de interface do usuário, 
-> pode haver métodos abstratos para criar botões, caixas de texto, janelas etc.
+<br> <br>
 
-> **2. Concrete Factory:** São classes concretas que implementam a interface 
-> da Fábrica Abstrata. Cada Concrete Factory é responsável por criar uma família 
-> específica de objetos relacionados. Por exemplo, pode haver uma Concrete Factory 
-> para criar elementos de interface do usuário no estilo Windows e outra para 
-> criar elementos no estilo macOS.
-
-> **3. Abstract Product:**  É uma interface ou classe abstrata que define os objetos 
-> a serem criados pelas fábricas. Cada método na Fábrica Abstrata corresponde a um 
-> tipo de Produto Abstrato. Por exemplo, se a Fábrica Abstrata criar elementos de 
-> interface do usuário, pode haver uma interface Produto Abstrato para botões, outra 
-> para caixas de texto, etc.
-
-> **4. Concrete Product:** São classes concretas que implementam as interfaces de 
-> Produto Abstrato. Essas classes representam os objetos reais criados pelas fábricas. 
-> Por exemplo, pode haver uma classe Concrete Product para botões no estilo Windows e 
-> outra para botões no estilo macOS.
-
-> **5. Código Cliente:** É o código que utiliza as fábricas e os produtos criados por 
-> essas fábricas. O Cliente interage apenas com as interfaces abstratas (Fábrica Abstrata 
-> e Produto Abstrato), sem conhecer as classes concretas que estão sendo usadas. O Cliente 
-> solicita os objetos à Fábrica Abstrata e os utiliza em seu código.
-
-### 2.4 - Como foi utilizado nesse projeto:
-> Basicamente nesse projeto temos uma package chamada *abs_fac* que contém todos os
-> arquivos desse padrão de projeto, específicamente:
-> 
-> **Package:** classes
-> > ***AlimentosFactory*** , ***BebidaImpl*** , ***PratoPrincipalImpl*** , ***SobremesaImpl***
->
-> **Package:** interfaces
-> > ***AbstractFactory*** , ***Bebida*** , ***PratoPrincipal*** , ***Sobremesa***
-> 
-> **Classe:** Days.java
-> 
-> Enfim, na package classes temos todas as classes concretas que implementam as interfaces
-> e definem seu atributo específico, para então na classe **Days**, instânciarmos a fábrica
-> com a classe concreta e assim permitir a criação de objetos com base em uma interface.
-> 
-> **Onde em vez de fazer isso:**
-> ```java
-> // ...
-> 
-> /* Instânciação dos nossos objetos sem o uso do padrão */
-> public static PratoPrincipalImpl segunda_PratoPrincipal = new PratoPrincipalImpl ();
-> public static BebidaImpl segunda_Bebida = new BebidaImpl ();
-> public static SobremesaImpl segunda_Sobremesa = new SobremesaImpl ();
-> 
-> // ...
-> ```
-> **Podemos fazer isso:**
-> ```java
-> // ...
-> 
-> /* Criação da nossa fábrica ( Interface <- Classe Concreta ) */
-> final static AbstractFactory fábrica = new AlimentosFactory ();
-> 
-> /* Criação dos objetos utilizando as interfaces + fábrica */
-> public static PratoPrincipal segunda_PratoPrincipal = fábrica . criarUmPratoPrincipal ();
-> public static Bebida segunda_Bebida = fábrica . criarUmaBebida ();
-> public static Sobremesa segunda_Sobremesa = fábrica . criarUmaSobremesa ();
-> 
-> // ...
-> ```
-> 
-> Portanto, apesar da implementação nesse projeto não ser tão boa, deixa clara aplicação do
-> padrão de projeto, que é a de criar os objetos utilizados no código utilizando a interface
-> de fábrica abstrata.
 ---
 
-### 3 - COMO A APLICAÇÃO FUNCIONA?
+<br>
 
-> **1º )** A organização do projeto se dá a partir do módulo '***src***' que em seu interior possui 
-> uma classe '***Main***' que basicamente é responsável por executar a thread inicial do programa 
-> inicializando a interface gráfica. 
-> 
-> **2º )** O módulo '***src***' contém diversas packages que auxíliam no funcionamento e organização do programa
-> como por exemplo a package '***abs_fac***' além de aplicar o padrão de projeto instância para toda a aplicação
-> os objetos que serão utilizados no display de alimentos, ou a package '***graphics***' que contem todas as classes
-> que servem para a padronização de componentes gráficos no nosso programa.
-> 
-> **3º )** A aplicação foi simplificada com somente 3 interfaces gráficas ( *Menu Principal* , *Administração* e *Clientes* )
-> onde nas 2 útlimas se é utilizado os objetos salvos na classe '***Days***' para alterar as caixas de texto e mostrar os alimentos
-> que estão salvos no sistema.
-> 
-> ```lua
-> Trabalho 04
-> ├── src
-> │   ├── Main.java
-> |   ├── abs_fac
-> |   |      ├── classes
-> |   |      |      ├── AlimentosFactory.java
-> |   |      |      ├── BebidaImpl.java
-> |   |      |      ├── PratoPrincipalImpl.java
-> |   |      |      └── SobremesaImpl.java
-> |   |      ├── interfaces
-> |   |      |      ├── AbstractFactory.java
-> |   |      |      ├── Bebida.java
-> |   |      |      ├── PratoPrincipal.java
-> |   |      |      └── Sobremesa.java
-> |   |      └── Days.java
-> |   ├── acess
-> |   |      └── Checker.java
-> |   ├── graphics
-> |   |      ├── Botão.java 
-> |   |      ├── Caixa.java 
-> |   |      ├── Janela.java 
-> |   |      └── Texto.java 
-> |   ├── interfaces
-> |   |      ├── Administração.java 
-> |   |      ├── Clientes.java
-> |   |      └── MenuPrincipal.java 
-> |   ├── res
-> |   |     ├── cursor_def.png
-> |   |     ├── cursor_hov.png
-> |   |     └── def_icon.png 
-> |   ├── utils
-> |   |      ├── Controle.java
-> |   |      ├── Cores.java
-> |   |      ├── Fontes.java
-> |   |      └── Imagens.java
-> └── └── README.MD
-> ```
+<h3 align="center"> MACROS DA BIBLIOTECA </h3> 
+
+<br>
+
+#### REGIÕES DO CONSOLE / CÓDIGO DE PÁGINA
+
+| MACRO                                              | Descrição                                                         |
+| :------------------------------------------------- | :---------------------------------------------------------------- |
+| `DEFAULT`                                          | Define o console como o padrão da linguagem C ( sem acentuação)   |
+| `BRAZIL`                                           | Define o console como o nosso pt-br com acentuação                |
+| `LATIN`                                            | Define o console como latino não pt-br, possui alguns caracteres  |
+| `CIRILICO`                                         | Define o console como do tipo cirílico ( й , и , к , с )          | 
+| `JAPAN`                                            | Define o console como do tipo japonês ( 日 , 本 , 語 )             |
+| `COREAN`                                           | Define o console como do tipo coreano ( 한 , 글 , 입니다 )         |
+| `GREGO`                                            | Define o console como do tipo grego ( Γ , ε , ι , α , σ , μ , ό ) |
+| `TURCO`                                            | Define o console como do tipo turco ( ö , ş , ğ )                 |
+| `ISO`                                              | Padroniza o console para printar texto de string acentuado        |
+
+<br>
+
+> Esses macros devem ser utilizados somente nas seguintes funções: `SYS_REGION` e `CS_SETREGION`;
+  
+<br>
+<br>
+
+#### ESTILIZAÇÃO DO TEXTO
+
+| MACRO                                              | Descrição                                                         |
+| :------------------------------------------------- | :---------------------------------------------------------------- |
+| `BRIGHT1`                                          | Deixa o texto ou fundo brilhantes                                 |
+| `BRIGHT2`                                          | Deixa o texto ou fundo brilhantes                                 |
+| `UNBRIGHT`                                         | Deixa o texto ou fundo escurecidos                                |
+| `ITALIC`                                           | Deixa o texto escrito na forma itálica                            |
+| `UNDERLINE`                                        | Deixa o texto escrito sublinhado                                  |
+| `BLINKER1`                                         | Deixa o texto ou fundo piscando                                   |
+| `BLINKER2`                                         | Deixa o texto ou fundo piscando                                   |
+| `BACKSET`                                          | Deixa o fundo esbranquiçado                                       |
+| `HIDE`                                             | Deixa o texto escrito escondido                                   |
+| `CUT`                                              | Deixa o texto escrito cortado                                     |
+
+<br>
+
+> Esses macros devem ser utilizados somente na seguinte função: `PROP_TEXTSTYLE` quando `ENABLEPROPS` tiver sido chamado;
+
+<br>
+<br>
+
+#### CORES DE ESTILIZAÇÃO DE TEXTO
+
+| TEXTO                                              | PLANO DE FUNDO                                                    |
+| :------------------------------------------------- | :---------------------------------------------------------------- |
+| `DEFAULT_TEXT`                                     | `DEFAULT_BACKGROUND`                                              |
+| `BLACK_TEXT`                                       | `RED_BACKGROUND`                                                  |
+| `RED_TEXT`                                         | `GREEN_BACKGROUND`                                                |
+| `GREEN_TEXT`                                       | `YELLOW_BACKGROUND`                                               | 
+| `YELLOW_TEXT`                                      | `BLUE_BACKGROUND`                                                 |
+| `BLUE_TEXT`                                        | `MAGENTA_BACKGROUND`                                              |
+| `MAGENTA_TEXT`                                     | `CYAN_BACKGROUND`                                                 |
+| `CYAN_TEXT`                                        | `WHITE_BACKGROUND`                                                |
+| `WHITE_TEXT`                                       |                                                                   |
+
+<br>
+
+> Esses macros devem ser utilizados somente nas seguintes funções: `PROP_TEXTCOLOR` e `PROP_BACKGROUNDCOLOR` quando `ENABLEPROPS` tiver sido chamado;
+
+<br>
+<br>
+
+#### FUNÇÕES DE STRINGS
+
+| MACRO                                              | Descrição                                                           |
+| :------------------------------------------------- | :------------------------------------------------------------------ |
+| `stringSZ`                                         | A função GWC_STRING, lerá uma string com um tamanho máximo          |
+| `stringEQ`                                         | A função GWC_STRING, lerá uma string até que seja diferente de algo |
+| `stringDF`                                         | A função GWC_STRING, lerá uma string até que seja igual a algo      |
+| `stringNR`                                         | A função GWC_STRING, lerá uma string normalmente e PR_STRING printará normalmente                   |
+| `stringIV`                                         | A função PR_STRING, printará a string de forma invertida            |
+| `stringHB`                                         | A função PR_STRING, printará a string em caixa alta ( formatada )   |
+| `stringLB`                                         | A função PR_STRING, printará a string em caixa baixa ( formatada )  |
+| `stringCY`                                         | A função PR_STRING, printará a string criptografada ( formatada )   |
+| `nosubs`                                           | Macro para dizer que não deseja substituições em PR_STRING          |
+| `notext`                                           | Macro para dizer que não terá nenhum texto em GWC_STRING            |
+| `nosize`                                           | Macro para dizer que não tem limite de tamanho                      |
+| `notoken`                                          | Macro para dizer que não há substiuição                             | 
+| `norchar`                                          | Macro para dizer que não há char de substiuição                     |
+
+<br>
+
+> Esses macros devem ser utilizados somente nas seguintes funções: `GWC_STRING` e `PR_STRING`;
+
+<br>
+<br>
+
+#### OPERADORES
+
+| MACRO                                              | Descrição                                                           |
+| :------------------------------------------------- | :------------------------------------------------------------------ |
+| `HT`                                               | MAIOR QUE      ( > )                                                |
+| `LT`                                               | MENOR QUE      ( < )                                                |
+| `EQ`                                               | IGUAL          ( == )                                               |
+| `DF`                                               | DIFERENTE      ( != )                                               |
+| `HE`                                               | MAIOR OU IGUAL ( >= )                                               |
+| `LE`                                               | MENOR OU IGUAL ( <= )                                               |
+| `NRM`                                              | NORMAL / SEM RESTRIÇÕES                                             |
+| `CRY`                                              | CRIPTOGRAFIA                                                        |
+| `SZE`                                              | TAMANHO                                                             |
+| `PWD`                                              | SENHA / PASSWORD ( COM NÚMEROS )                                    |
+| `ONS`                                              | SOMENTE TEXTO                                                       |
+| `PWS`                                              | SENHA / PASSWORD ( SEM NÚMEROS )                                    |
+| `ONN`                                              | SOMENTE NÚMEROS                                                     |
+| `PWN`                                              | SENHA / PASSWORD ( SÓ NÚMEROS )                                     |
+| `PAR`                                              | SE O VALOR FOR PAR                                                  |
+| `IMPAR`                                            | SE O VALOR FOR IMPAR                                                |
+| `MULTIPLO`                                         | SE O VALOR FOR MÚLTIPLO DO OUTRO                                    |
+| `QUADRADO_X_DF_Y`                                  | x² != y                                                             |
+| `QUADRADO_X_EQ_Y`                                  | x² == y                                                             |
+| `INVERSO`                                          | INVERTE O VETOR OU MATRIZ                                           |
+| `CRESCENTE`                                        | ORGANIZAÇÃO DO VETOR OU MATRIZ DE FORMA CRESCENTE ( BUBBLE SORT )   |
+| `DECRESCENTE`                                      | ORGANIZAÇÃO DO VETOR OU MATRIZ DE FORMA DECRESCENTE ( BUBBLE SORT ) |
+| `NOTMULTIPLO`                                      | SE O VALOR NÃO FOR MÚLTIPLO DO OUTRO                                |
+
+<br>
+
+> Esses macros devem ser utilizados somente nas seguintes funções: `allen_SUBSINTARRAY` , `allen_COPYINTARRAY` , `allen_SUBSINTBARRAY` , `allen_COPYINTBARRAY` , `GWC_INT` , `GWC_DOUBLE` , `GWC_FLOAT` , `GWC_CHAR` , `getI` , `getF` , `getD`;
+
+<br>
+<br>
+
+#### ALLEN DEFINEDS
+
+| MACRO                                              | Descrição                                                           |
+| :------------------------------------------------- | :------------------------------------------------------------------ |
+| `YES` , ` yes ` , `SIM` , `sim`                    | Serve como uma variável booleana                                    |
+| `NO` , ` no ` , `NAO` , `nao`                      | Serve como uma variável booleana                                    |
+| `se`                                               | if                                                                  | 
+| `e_se`                                             | else if                                                             | 
+| `outro`                                            | else                                                                | 
+| `para`                                             | for                                                                 | 
+| `quebre`                                           | break                                                               | 
+| `caso`                                             | case                                                                | 
+| `caractere`                                        | char                                                                | 
+| `constante`                                        | const                                                               | 
+| `padrao` , `outro_caso`                            | default                                                             | 
+| `faca`                                             | do                                                                  | 
+| `enquanto`                                         | while                                                               | 
+| `real`                                             | float                                                               | 
+| `real_64`                                          | double                                                              | 
+| `inteiro`                                          | int                                                                 |
+| `longo`                                            | long                                                                |
+| `retorne` , `devolva` , `salve`                    | return                                                              |
+| `curto`                                            | short                                                               |
+| `tamanho_de`                                       | sizeof                                                              |
+| `estatico`                                         | static                                                              |
+| `registro`                                         | struct                                                              |
+| `escolha`                                          | switch                                                              |
+| `tipo_de`                                          | typedef                                                             |
+| `uniao`                                            | union                                                               |
+| `vazio`                                            | void                                                                |
+| `open`                                             | (                                                                   |
+| `close`                                            | )                                                                   |
+| `end`                                              | ;                                                                   |
+| `booleana`                                         | bool                                                                |
+
+<br>
+
+> Esses macros podem ser utilizados em qualquer lugar: exemplo `se ( x > 12 ) printf("arroz");`
+
+<br>
+
+---
+
+<br>
+
+<h3 align="center"> FUNÇÕES </h3> 
+
+<h4 align="center"> CLIQUE PARA ACESSAR A DOCUMENTAÇÃO DAS FUNÇÕES </h4>
+
+<br>
+
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/RESUME.md" title="Listagem Rápida de Funções."> Resumo das funções </a> </p>
+
+<br>
+
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/PR.md" title="Funções de print formatado."> 1. PR </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/CS.md" title="Funções de controle do console."> 2. CS </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/SYS.md" title="Funções de controle do sistema."> 3. SYS </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/PROPS.md" title="Funções de estilização do texto."> 4. PROPS </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/G.md" title="Funções de controle de entrada stdin."> 5. G </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/allen.md" title="Funções genêricas da biblioteca."> 6. allen </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/SB.md" title="Funções para uso de MESSAGEBOXES e WindowsSystemAudios."> 7. SB </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/MATTE.md" title="Funções matemáticas."> 8. MATTE </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/LOCH.md" title="Funções do setlocale."> 9. LOCH </a> </p>
+### <p align="center"> <a href="https://github.com/AllisonJunior/allen.h/blob/main/FUNCTIONS_DESCRIPTION/FLEE.md" title="Funções para controle total sobre arquivos."> 10. FLEE </a> </p>
+
+
+
+<br>
+
+---
+
+
