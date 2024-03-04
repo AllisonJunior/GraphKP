@@ -36,7 +36,7 @@ public class Grafo
       // [ DEBUG ] Metódo para imprimir no console o MST gerado pelo algoritmo de Kruskal
       public void debug_printarMST_Kruskal ( Aresta [] _resultado )
       {
-            System . out . println ( "Arestas do MST gerado pelo algoritmo de Kruskal: \n" );
+            System . out . println ( "\n* ARESTAS DO MST GERADO PELO ALGORITMO DE KRUSKAL *\n" );
             for ( Aresta ref : _resultado )
                   System . out . println ( ref . get_origem () + " --> " + ref . get_destino () + " : " + ref . get_peso () );
       }
@@ -44,7 +44,7 @@ public class Grafo
       // Método para imprimir no console a MST gerada pelo algoritmo de Prim
       public void debug_printarMST_Prim ( int [] _parent , LinkedList < Aresta > [] _grafo )
       {
-            System . out . println ( "Arestas do MST gerado pelo algoritmo de Prim: \n" );
+            System . out . println ( "\n* ARESTAS DO MST GERADO PELO ALGORITMO DE PRIM *\n" );
             
             // Verifica se o vértice tem um pai na MST
             for ( int kaj = 1 ; kaj < vertices ; kaj ++ ) if ( _parent [ kaj ] != -1 )
@@ -176,8 +176,8 @@ public class Grafo
       // Metódo para listar todas as arestas já inseridas
       public void mostrar_Arestas ()
       {
-            System . out . println ( "\n* LISTA DE ARESTAS DO GRAFO ATUAL *" );
+            System . out . println ( "\n* LISTA DE ARESTAS DO GRAFO ATUAL *\n" );
             for ( int kaj = 0 ; kaj < vertices ; kaj ++ ) for ( Aresta aresta : adjacencia [ kaj ] )
-                  System . out . println ( "[ " + aresta . get_origem () + " --> " + aresta . get_destino () + ": " + aresta . get_peso () + " ]" );
+                  System . out . println ( "[ " + aresta . get_origem () + " --> " + aresta . get_destino () + " : " + aresta . get_peso () + " ]" );
       }
 }
