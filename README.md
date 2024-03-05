@@ -82,8 +82,9 @@ GENERIC-MST(G,w)
 
 - **Implementação Intuitiva:**
 
-A implementação de Prim pode ser mais intuitiva para alguns programadores, especialmente aqueles que estão familiarizados com o conceito de árvores e a ideia de crescer uma árvore de maneira incremental, adicionando vértices e arestas a ela.
-Kruskal, por outro lado, envolve uma abordagem mais global, onde todas as arestas são consideradas em conjunto e ordenadas pelo peso antes de serem adicionadas à árvore geradora mínima. Isso pode ser um pouco menos intuitivo para alguns programadores, mas pode ser mais direto em termos de implementação e entendimento.
+  - A implementação de Prim pode ser mais intuitiva para alguns programadores, especialmente aqueles que estão familiarizados com o conceito de árvores e a ideia de crescer uma árvore de maneira incremental, adicionando vértices e arestas a ela.
+  - Kruskal, por outro lado, envolve uma abordagem mais global, onde todas as arestas são consideradas em conjunto e ordenadas pelo peso antes de serem adicionadas à árvore geradora mínima. Isso pode ser um pouco menos intuitivo para alguns programadores, mas pode ser mais direto em termos de implementação e entendimento.
+
 Em geral, a escolha entre o algoritmo de Prim e o de Kruskal depende das características específicas do grafo em questão, como densidade, número de vértices e arestas, e dos requisitos de desempenho da aplicação.
 # **Como a funciona a aplicação?**
 
