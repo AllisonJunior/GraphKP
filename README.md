@@ -72,14 +72,15 @@ GENERIC-MST(G,w)
 
 - **Complexidade de Tempo**
 
-O algoritmo de Prim tende a ser mais eficiente em grafos densos devido ao uso de uma fila de prioridade para selecionar as arestas de menor peso a serem adicionadas à árvore em construção. A complexidade de tempo do algoritmo de Prim é O(V^2) usando uma matriz de adjacência e O(E log V) usando uma fila de prioridade implementada com um heap binário.
-Por outro lado, o algoritmo de Kruskal pode ser mais eficiente em grafos esparsos, já que sua complexidade de tempo é dominada pela ordenação das arestas, que é O(E log E). Se o grafo é esparso o suficiente e o custo da ordenação é menor do que a operação de fila de prioridade em Prim, então Kruskal pode ser uma escolha melhor.
+  - O algoritmo de Prim tende a ser mais eficiente em grafos densos devido ao uso de uma fila de prioridade para selecionar as arestas de menor peso a serem adicionadas à árvore em construção. A complexidade de tempo do algoritmo de Prim é O(V^2) usando uma matriz de adjacência e O(E log V) usando uma fila de prioridade implementada com um heap binário.
+  - Por outro lado, o algoritmo de Kruskal pode ser mais eficiente em grafos esparsos, já que sua complexidade de tempo é dominada pela ordenação das arestas, que é O(E log E). Se o grafo é esparso o suficiente e o custo da ordenação é menor do que a operação de fila de prioridade em Prim, então Kruskal pode ser uma escolha melhor.
 
 - **Estruturas de Dados:**
 
-Kruskal geralmente requer uma estrutura de dados Union-Find adicional para verificar e manter a conectividade dos vértices durante o processo de construção da árvore geradora mínima. Essa estrutura de dados é usada para verificar se a adição de uma aresta criaria um ciclo no grafo.
-Por outro lado, o algoritmo de Prim pode ser implementado usando apenas uma fila de prioridade simples para selecionar as arestas de menor peso a serem adicionadas à árvore.
-Implementação Intuitiva:
+  - Kruskal geralmente requer uma estrutura de dados Union-Find adicional para verificar e manter a conectividade dos vértices durante o processo de construção da árvore geradora mínima. Essa estrutura de dados é usada para verificar se a adição de uma aresta criaria um ciclo no grafo.
+  - Por outro lado, o algoritmo de Prim pode ser implementado usando apenas uma fila de prioridade simples para selecionar as arestas de menor peso a serem adicionadas à árvore.
+
+- **Implementação Intuitiva:**
 
 A implementação de Prim pode ser mais intuitiva para alguns programadores, especialmente aqueles que estão familiarizados com o conceito de árvores e a ideia de crescer uma árvore de maneira incremental, adicionando vértices e arestas a ela.
 Kruskal, por outro lado, envolve uma abordagem mais global, onde todas as arestas são consideradas em conjunto e ordenadas pelo peso antes de serem adicionadas à árvore geradora mínima. Isso pode ser um pouco menos intuitivo para alguns programadores, mas pode ser mais direto em termos de implementação e entendimento.
