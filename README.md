@@ -1,10 +1,10 @@
 _<h1 align="center"> GraphPK :brazil: </h1>_
 
-_<h3 align="center"> Introdução </h3>_ 
+# **Introdução**
 
-* Para começar, vamos supor o seguinte problema: <br>
+__Para começar, vamos supor o seguinte problema:__ <br>
 
-Uma companhia telefônica deseja criar uma rede interligando um conjunto de cidades. O custo para unir duas cidades por meio de cabos é conhecido mas, como toda boa companhia,
+  Uma companhia telefônica ☎️ deseja criar uma rede interligando um conjunto de cidades. O custo para unir duas cidades por meio de cabos é conhecido mas, como toda boa companhia,
 esta deseja minimizar seus gastos, fazendo as ligações mais baratas possíveis sem deixar de cobrir nenhuma das cidades. <br>
 
 Esse e outros problemas que seguem essa mesma ideia, podem ser resumidos a achar uma Árvore Geradora Mínima ( MST <hover> é um subgrafo acíclico que contém todos os vértices do grafo ) para um grafo conhecido, tal problema pode ser enunciado assim: <br>
@@ -20,7 +20,7 @@ A cada iteração, A é subconjunto do conjunto de arestas de uma árvore espalh
 O algoritmo mantém esta invariante adicionando ao conjunto A, a cada iteração, uma aresta (u,v) de maneira que a união de A com (u,v) seja um subconjunto de uma árvore espalhada mínima. 
 Pelo fato de esta aresta manter a propriedade de A de ser um subconjunto de arestas de uma árvore espalhada mínima, ela é chamada de aresta segura. <br>
 
-## 2. Algoritmo de Kruskal
+# **Algoritmo de Kruskal**
 
 Ordenação das arestas: O algoritmo começa ordenando todas as arestas do grafo em ordem não decrescente de peso.
 Inicialização da árvore: Inicialmente, cada vértice do grafo é uma árvore separada.
@@ -39,7 +39,7 @@ Desvantagens do Algoritmo de Kruskal:
 Pode ser menos eficiente em grafos densos, devido ao custo de ordenação das arestas.
 A implementação comumente usa estruturas de dados adicionais, como Union-Find, para verificar a conectividade das árvores.
 
-## 3. Algoritmo de Prim
+# **Algoritmo de Prim**
 
 Escolha inicial de vértice: O algoritmo começa escolhendo um vértice arbitrário para iniciar a MST.
 Adição de arestas: Em cada etapa, o algoritmo adiciona a aresta de menor peso que conecta um vértice na MST atual a um vértice fora da MST.
@@ -55,13 +55,13 @@ Desvantagens do Algoritmo de Prim:
 Requer uma árvore ou floresta inicial, o que pode exigir processamento adicional.
 Menos intuitivo para implementação em algumas situações.
 
-## 4. Comparação
+# **Comparação entre os dois algoritmos**
 
 Complexidade de Tempo: O algoritmo de Prim é geralmente mais eficiente em grafos densos, enquanto o algoritmo de Kruskal pode ser melhor em grafos esparsos, devido à necessidade de ordenação das arestas.
 Estruturas de Dados: Kruskal geralmente requer uma estrutura de dados Union-Find adicional, enquanto Prim pode ser implementado com uma fila de prioridade simples.
 Implementação Intuitiva: A implementação de Prim pode ser mais intuitiva para alguns programadores, pois envolve adicionar arestas diretamente à MST, enquanto Kruskal envolve verificar a conectividade das árvores.
 Ambos os algoritmos são amplamente utilizados em diversas aplicações, e a escolha entre eles depende do tipo de grafo e das restrições de desempenho específicas do problema em questão.
 
-## 5. Como a aplicação funciona? Qual tecnológia foi utilizada? Motivações, etc.
+# **Como a funciona a aplicação?**
 
 
