@@ -3,6 +3,7 @@
   suporte aos metódos que aplicam os algoritmos de Kruskal e Prim.
 */
 package implementation;
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -26,6 +27,18 @@ public class Grafo
             for ( int kaj = 0 ; kaj < vertices ; kaj ++ ) adjacencia [ kaj ] = new LinkedList <> ();
       }
       
+      // Setter test
+      public void set_vertices ( int _vertices )
+      {
+            this . vertices = _vertices;
+            this . adjacencia = new LinkedList [ vertices ];
+            
+            for ( int kaj = 0 ; kaj < vertices ; kaj ++ ) adjacencia [ kaj ] = new LinkedList <> ();
+      }
+      
+      // Getter test
+      public int get_vertices () { return vertices; }
+      
       // Metódo para adicionar uma aresta ao grafo
       public void adicionar_Aresta ( int _origem , int _destino , int _peso )
       {
@@ -35,6 +48,14 @@ public class Grafo
       
       // [ DEBUG ] Metódo para imprimir no console o MST gerado pelo algoritmo de Kruskal
       public void debug_printarMST_Kruskal ( Aresta [] _resultado )
+      {
+            System . out . println ( "\n* ARESTAS DO MST GERADO PELO ALGORITMO DE KRUSKAL *\n" );
+            for ( Aresta ref : _resultado )
+                  System . out . println ( ref . get_origem () + " --> " + ref . get_destino () + " : " + ref . get_peso () );
+      }
+      
+      // [Metódo para imprimir no console o MST gerado pelo algoritmo de Kruskal
+      public void listMST_Kruskal ( Aresta [] _resultado )
       {
             System . out . println ( "\n* ARESTAS DO MST GERADO PELO ALGORITMO DE KRUSKAL *\n" );
             for ( Aresta ref : _resultado )
@@ -59,6 +80,30 @@ public class Grafo
                
                 if ( peso != -1 ) System . out . println ( u + " --> " + v + " : " + peso );
                 else              System . out . println ( "Aresta inválida: " + u + " --> " + v );
+            }
+            else System . out . println ( "Aresta inválida: " + _parent [ kaj ] + " --> " + kaj );
+      }
+      
+      // Metódo gráfico do print
+      public void list_printarMST_Prim ( int [] _parent , LinkedList < Aresta > [] _grafo , DefaultListModel < String > _ref )
+      {
+            String tepo = "* ALGORITMO DE PRIM *";
+            _ref . addElement ( tepo );
+            _ref . addElement ( "" );
+            
+            // Verifica se o vértice tem um pai na MST
+            for ( int kaj = 1 ; kaj < vertices ; kaj ++ ) if ( _parent [ kaj ] != -1 )
+            {
+                  int u = _parent [ kaj ] , v = kaj , peso = -1;
+                  
+                  for ( Aresta aresta : _grafo [ u ] ) if ( aresta . get_destino () == v )
+                  {
+                        peso = aresta . get_peso ();
+                        break;
+                  }
+                  
+                  if ( peso != -1 ) { tepo = u + " ⭢ " + v + " : " + peso; _ref . addElement ( tepo ); }
+                  else              System . out . println ( "Aresta inválida: " + u + " --> " + v );
             }
             else System . out . println ( "Aresta inválida: " + _parent [ kaj ] + " --> " + kaj );
       }
@@ -121,6 +166,56 @@ public class Grafo
             debug_printarMST_Kruskal ( resultado );
       }
       
+      // Metódo para aplicação do algoritmo de Kruskal para encontrar o MST do grafo gráficamente
+      public void graphics_execMST_Kruskal ( DefaultListModel < String > _ref )
+      {
+            // Inicialização de variáveis
+            Aresta [] resultado = new Aresta [ vertices - 1 ];
+            int [] parente = new int [ vertices ];
+            Arrays . fill ( parente , -1 );
+            int totalArestas = 0;
+            
+            // Adiciona o tamanho da lista de adjacência de cada vértice
+            for ( int kaj = 0 ; kaj < vertices ; kaj ++ ) totalArestas += adjacencia [ kaj ] . size ();
+            
+            // Array para armazenar todas as arestas do grafo
+            Aresta [] arestas = new Aresta [ totalArestas ];
+            
+            // Criação e preenchimento do array de arestas
+            int index = 0;
+            for ( int kaj = 0 ; kaj < vertices ; kaj ++ ) for ( Aresta aresta : adjacencia [ kaj ] )
+                  arestas [ index ++ ] = aresta;
+            
+            // Ordenação das arestas por peso
+            Arrays . sort ( arestas , Comparator . comparingInt ( Aresta :: get_peso ) );
+            
+            // Aplicação do algoritmo de Kruskal
+            int kaj = 0 , jak = 0;
+            while ( ( kaj < vertices - 1 ) && ( jak < arestas.length ) )
+            {
+                  // Obtém a próxima aresta do array ordenado
+                  Aresta aresta = arestas [ jak ++ ];
+                  
+                  // Encontra o conjunto que contém a origem da aresta e o que contém o destino
+                  int x = busca ( parente , aresta . get_origem () );
+                  int y = busca ( parente , aresta . get_destino () );
+                  
+                  // Verifica se a inclusão da aresta não forma ciclo
+                  if ( x != y ) { resultado [ kaj ++ ] = aresta; union ( parente , x , y ); }
+            }
+            
+            // Print do metódo
+            String tepo = "* ALGORITMO DE KRUSKAL *";
+            _ref . addElement ( tepo );
+            _ref . addElement ( "" );
+            
+            for ( Aresta stuka : resultado )
+            {
+                tepo = stuka . get_origem () + " ⭢ " + stuka . get_destino () + " : " + stuka . get_peso ();
+                _ref . addElement ( tepo );
+            }
+      }
+      
       // Método da aplicação do algoritmo de Prim para encontrar o MST do grafo
       public void execMST_Prim ()
       {
@@ -148,8 +243,8 @@ public class Grafo
                // Atualize os valores de chave e pai dos vértices adjacentes ao vértice escolhido
                for ( Aresta aresta : adjacencia [ u ] )
                {
-                  int v = aresta.get_destino();
-                  int peso = aresta.get_peso();
+                  int v = aresta . get_destino ();
+                  int peso = aresta . get_peso ();
                   
                   if ( !incluso_emMST [ v ] && peso < chave [ v ] ) { pai [ v ] = u; chave [ v ] = peso; }
                }
@@ -158,6 +253,47 @@ public class Grafo
             // Imprimir a MST gerada pelo algoritmo de Prim
             debug_printarMST_Prim ( pai , adjacencia );
       }
+      
+      // Método da aplicação do algoritmo de Prim para encontrar o MST do grafo gráficamente
+      public void graphics_execMST_Prim ( DefaultListModel < String > _ref )
+      {
+            // Array para armazenar o pai de cada vértice na MST, um para armazenar o custo mínimo de cada vértice
+            // e um para acompanhar se o vértice está incluso na MST
+            int [] pai = new int [ vertices ];
+            int [] chave = new int [ vertices ];
+            boolean [] incluso_emMST = new boolean [ vertices];
+            
+            // Inicialização dos arrays chave e pai
+            for ( int kaj = 0 ; kaj < vertices ; kaj ++ ) { chave [ kaj ] = Integer . MAX_VALUE; pai [ kaj ] = -1; }
+            
+            // O vértice inicial é escolhido arbitrariamente como o primeiro vértice
+            chave [ 0 ] = 0;
+            
+            // Construção da MST
+            for ( int count = 0 ; count < vertices - 1 ; count ++ )
+            {
+                  // Encontre o vértice de chave mínima que ainda não está incluso na MST
+                  int u = chaveMinima ( chave , incluso_emMST );
+                  
+                  // Marque o vértice como incluso na MST
+                  incluso_emMST[u] = true;
+                  
+                  // Atualize os valores de chave e pai dos vértices adjacentes ao vértice escolhido
+                  for ( Aresta aresta : adjacencia [ u ] )
+                  {
+                        int v = aresta . get_destino ();
+                        int peso = aresta . get_peso ();
+                        
+                        if ( !incluso_emMST [ v ] && peso < chave [ v ] ) { pai [ v ] = u; chave [ v ] = peso; }
+                  }
+            }
+            
+            // Print do metódo
+            list_printarMST_Prim ( pai , adjacencia , _ref );
+            
+      }
+      
+      
       
       // Metódo para encontrar a chave mínima
       public int chaveMinima ( int [] _chave , boolean [] incluso_emMST )

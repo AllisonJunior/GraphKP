@@ -88,7 +88,7 @@ public class Console
             teste1 . adicionar_Aresta ( 0 , 3 , 5 );
             teste1 . adicionar_Aresta ( 1 , 3 , 15 );
             teste1 . adicionar_Aresta ( 2 , 3 , 4 );
-            teste1 . adicionar_Aresta ( 1 , 3 , 4 );
+            teste1 . adicionar_Aresta ( 1 , 2 , 4 );
             
             // Mostrando todas as arestas do grafo
             teste1 . mostrar_Arestas ();
