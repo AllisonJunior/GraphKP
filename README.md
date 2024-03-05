@@ -35,36 +35,36 @@ GENERIC-MST(G,w)
 
 # **Algoritmo de Kruskal**
 
-Ordenação das arestas: O algoritmo começa ordenando todas as arestas do grafo em ordem não decrescente de peso.
-Inicialização da árvore: Inicialmente, cada vértice do grafo é uma árvore separada.
-Iteração sobre as arestas: Começando com a aresta de menor peso, o algoritmo verifica se as extremidades da aresta pertencem a árvores diferentes.
-Se pertencerem a árvores diferentes, a aresta é incluída na MST.
-Se pertencerem à mesma árvore, a aresta é descartada para evitar a formação de ciclos.
-União das árvores: Após incluir uma aresta na MST, as árvores dos vértices conectados pela aresta são fundidas em uma única árvore.
+- **Detalhes**
+   - Ordenação das arestas: O algoritmo começa ordenando todas as arestas do grafo em ordem não decrescente de peso.
+   - Inicialização da árvore: Inicialmente, cada vértice do grafo é uma árvore separada.
+   - Iteração sobre as arestas: Começando com a aresta de menor peso, o algoritmo verifica se as extremidades da aresta pertencem a árvores diferentes.
+   - Se pertencerem a árvores diferentes, a aresta é incluída na MST.
+   - Se pertencerem à mesma árvore, a aresta é descartada para evitar a formação de ciclos.
+   - União das árvores: Após incluir uma aresta na MST, as árvores dos vértices conectados pela aresta são fundidas em uma única árvore. <br>
 
-<br>
-
-Vantagens do Algoritmo de Kruskal:
-É eficiente para grafos esparsos.
-Não requer uma árvore ou floresta inicial.
-Funciona bem em grafos densos também.
-Desvantagens do Algoritmo de Kruskal:
-Pode ser menos eficiente em grafos densos, devido ao custo de ordenação das arestas.
-A implementação comumente usa estruturas de dados adicionais, como Union-Find, para verificar a conectividade das árvores.
+- **Vantagens**
+   - É eficiente para grafos esparsos.
+   - Não requer uma árvore ou floresta inicial.
+   - Funciona bem em grafos densos também.
+     
+- **Desvantagens**
+   - Pode ser menos eficiente em grafos densos, devido ao custo de ordenação das arestas.
+   - A implementação comumente usa estruturas de dados adicionais, como Union-Find, para verificar a conectividade das árvores.
 
 # **Algoritmo de Prim**
 
+- **Detalhes**
 Escolha inicial de vértice: O algoritmo começa escolhendo um vértice arbitrário para iniciar a MST.
 Adição de arestas: Em cada etapa, o algoritmo adiciona a aresta de menor peso que conecta um vértice na MST atual a um vértice fora da MST.
 Atualização da MST: Após adicionar uma aresta à MST, o vértice recém-incluído é considerado parte da MST.
-Repetição até a MST ser completa: O processo continua até que todos os vértices do grafo estejam na MST.
+Repetição até a MST ser completa: O processo continua até que todos os vértices do grafo estejam na MST. <br>
 
-<br>
-
-Vantagens do Algoritmo de Prim:
+- **Vantagens**
 Geralmente é mais eficiente em grafos densos.
 Pode ser implementado com complexidade de tempo melhor em algumas situações do que o algoritmo de Kruskal.
-Desvantagens do Algoritmo de Prim:
+
+- **Desvantagens**
 Requer uma árvore ou floresta inicial, o que pode exigir processamento adicional.
 Menos intuitivo para implementação em algumas situações.
 
