@@ -1,8 +1,8 @@
-<h1 align="center"> GraphKP </h1>
+_<h1 align="center"> GraphPK :brazil: </h1>_
 
-## 1. Introdução
+_<h3 align="center"> Introdução </h3>_ 
 
-Vamos supor o seguinte problema: <br>
+* Para começar, vamos supor o seguinte problema: <br>
 
 Uma companhia telefônica deseja criar uma rede interligando um conjunto de cidades. O custo para unir duas cidades por meio de cabos é conhecido mas, como toda boa companhia,
 esta deseja minimizar seus gastos, fazendo as ligações mais baratas possíveis sem deixar de cobrir nenhuma das cidades. <br>
@@ -62,4 +62,6 @@ Estruturas de Dados: Kruskal geralmente requer uma estrutura de dados Union-Find
 Implementação Intuitiva: A implementação de Prim pode ser mais intuitiva para alguns programadores, pois envolve adicionar arestas diretamente à MST, enquanto Kruskal envolve verificar a conectividade das árvores.
 Ambos os algoritmos são amplamente utilizados em diversas aplicações, e a escolha entre eles depende do tipo de grafo e das restrições de desempenho específicas do problema em questão.
 
-## 5. Como funciona
+## 5. Como a aplicação funciona? Qual tecnológia foi utilizada? Motivações, etc.
+
+
