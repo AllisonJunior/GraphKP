@@ -1,4 +1,4 @@
-_<h1 align="center"> GraphPK :brazil: </h1>_
+_<h1 align="center"> GraphKP :brazil: </h1>_
 
 # **Introdução**
 
