@@ -8,18 +8,30 @@ Uma companhia telefônica ☎️ deseja criar uma rede interligando um conjunto 
 esta deseja minimizar seus gastos, fazendo as ligações mais baratas possíveis sem deixar de cobrir nenhuma das cidades. <br>
 
 Esse e outros problemas que seguem essa mesma ideia, podem ser resumidos a achar uma <a href="https://pt.stackoverflow.com/questions/22245/o-que-%C3%A9-%C3%A1rvore-geradora-m%C3%ADnima
-" title="É um subgrafo acíclico que contém todos os vértices do grafo">Árvore Geradora Mínima ( MST )</a> para um grafo conhecido, tal problema pode ser enunciado assim: <br>
-   - **Dado um grafo G = (V , E) com uma função "peso" que associa valores reais w às arestas de E, deseja-se encontrar uma árvore T = (V , E') onde E' está contido em E e a soma dos pesos
-das arestas em E' é minima.**
-<br>
+" title="É um subgrafo acíclico que contém todos os vértices do grafo">Árvore Geradora Mínima ( MST )</a> para um grafo conhecido, tal problema pode ser enunciado assim: 
+<br> <br>
+**Dado um grafo G = ( V , E ) com uma função "peso" que associa valores reais w às arestas de E, deseja-se encontrar uma árvore T = ( V , E' ) onde E' está contido em E e a soma dos pesos
+das arestas em E' é minima.** <br>
 
-Há uma solução genérica para este problema, apresentada abaixo, que serve de base para dois algoritmos bastante conhecidos para árvores espalhadas mínimas: os algoritmos de Kruskal e Prim. 
+Há uma solução genérica para este problema, apresentada abaixo, que serve de base para dois algoritmos bastante conhecidos para árvores espalhadas mínimas os algoritmos, de: 
+  - <a href="https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/kruskal.html" title="O algoritmo de Kruskal faz crescer uma floresta geradora até que ela se torne conexa.  A floresta cresce de modo a satisfazer o critério de minimalidade de MSTs baseado em circuitos.">Kruskal</a>
+  - <a href="https://www.ime.usp.br/~pf/algoritmos_para_grafos/aulas/prim.html" title="Dado um grafo não-dirigido conexo G com custos nas arestas, o algoritmo de Prim cultiva uma sub­árvore de G até que ela se torne geradora. No fim do processo, a árvore é uma MST.">Prim</a>
+
 O algoritmo genérico mantém um conjunto de arestas A e a seguinte invariante: <br>
-
-A cada iteração, A é subconjunto do conjunto de arestas de uma árvore espalhada mínima. <br>
+  - A cada iteração, A é subconjunto do conjunto de arestas de uma árvore espalhada mínima. <br>
 
 O algoritmo mantém esta invariante adicionando ao conjunto A, a cada iteração, uma aresta (u,v) de maneira que a união de A com (u,v) seja um subconjunto de uma árvore espalhada mínima. 
 Pelo fato de esta aresta manter a propriedade de A de ser um subconjunto de arestas de uma árvore espalhada mínima, ela é chamada de aresta segura. <br>
+
+O algoritmo genérico para Árvores Espalhadas Mínimas é apresentado logo abaixo:
+```
+GENERIC-MST(G,w)
+1 A := {}
+2 while A não forma uma árvore espalhada
+3       do encontre uma aresta (u,v) que é segura para A
+4          A := A união {(u,v)}
+5 return A
+```
 
 # **Algoritmo de Kruskal**
 
