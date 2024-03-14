@@ -86,3 +86,5 @@ GENERIC-MST(G,w)
   - Kruskal, por outro lado, envolve uma abordagem mais global, onde todas as arestas são consideradas em conjunto e ordenadas pelo peso antes de serem adicionadas à árvore geradora mínima. Isso pode ser um pouco menos intuitivo para alguns programadores, mas pode ser mais direto em termos de implementação e entendimento.
 
 Em geral, a escolha entre o algoritmo de Prim e o de Kruskal depende das características específicas do grafo em questão, como densidade, número de vértices e arestas, e dos requisitos de desempenho da aplicação.
+
+# *Sobre a aplicação*
